@@ -23,6 +23,36 @@ Optional
 	formBody            |RequestBody       |Http post所使用。是OkHttp所定義的類別。
 	objectType          |Type              |類別型態。配合Gson使用。
 
+	
+     Mapping         | Generated HTML Element               | Database Column Type
+     --------------- |:-------------------------------------|:--------------------
+     `boolean`       | `input[type=checkbox]`               | `boolean`
+     `string`        | `input[type=text]`                   | `string`
+     `email`         | `input[type=email]`                  | `string` with `name =~ /email/`
+     `url`           | `input[type=url]`                    | `string` with `name =~ /url/`
+     `tel`           | `input[type=tel]`                    | `string` with `name =~ /phone/`
+     `password`      | `input[type=password]`               | `string` with `name =~ /password/`
+     `search`        | `input[type=search]`                 | -
+     `uuid`          | `input[type=text]`                   | `uuid`
+     `text`          | `textarea`                           | `text`
+     `file`          | `input[type=file]`                   | `string` responding to file methods
+     `hidden`        | `input[type=hidden]`                 | -
+     `integer`       | `input[type=number]`                 | `integer`
+     `float`         | `input[type=number]`                 | `float`
+     `decimal`       | `input[type=number]`                 | `decimal`
+     `range`         | `input[type=range]`                  | -
+     `datetime`      | `datetime select`                    | `datetime/timestamp`
+     `date`          | `date select`                        | `date`
+     `time`          | `time select`                        | `time`
+     `select`        | `select`                             | `belongs_to`/`has_many`/`has_and_belongs_to_many` associations
+     `radio_buttons` | collection of `input[type=radio]`    | `belongs_to` associations
+     `check_boxes`   | collection of `input[type=checkbox]` | `has_many`/`has_and_belongs_to_many` associations
+     `country`       | `select` (countries as options)      | `string` with `name =~ /country/`
+     `time_zone`     | `select` (timezones as options)      | `string` with `name =~ /time_zone/`
+
+
+
+
 Sample Code
 ----
 #### Load JSONObject Object
