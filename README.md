@@ -2,126 +2,134 @@
 Welcome to JsonCake
 =======
 
-這是一個Android Library，方便developer開發Android App時，快速執行下載或上傳Json file。本Library使用了 [OKHttp][2] 以及 [Gson][1] 協助處理相關的操作。
+這是一個Android Library，方便developer開發Android App時，快速執行下載或上傳**Json file**，讓你使用Json進行資料傳輸有如**piece of cake**。
+
+本Library使用了 [OKHttp][2] 以及 [Gson][1] 協助處理相關的操作。
 
 Variables
 ---
 **Required**
 
-	Name            |Data type       |Description
-	----------------|----------------|-----------      
-	urlStr          |String          |json file 的網址。
-	onFinishListener|OnFinishListener|Task 結束時呼叫的Listener。
+|Name    |Data type|Description|
+|:-------|:--------|:----------|      
+|urlStr |String|json file 的網址。|
+|onFinishListener|OnFinishListener|Task 結束時呼叫的Listener。|
 
 
 Optional
-	
-	Name                |Data type         |Description
-	--------------------|------------------|-----------      
-	connectionTimeout   |int               |連線至server的timeout時間，單位是秒。
-	readTimeout         |int               |Http get 的 timeout時間，單位是秒。
-	writeTimeout        |int               |Http post 的timeout時間，單位是秒。
-	onTaskFailListener  |OnTaskFailListener|Task 失敗時呼叫的Listener。
-	formBody            |RequestBody       |Http post所使用。是OkHttp所定義的類別。
-	objectType          |Type              |類別型態。配合Gson使用。
 
-
-     
+|Name    |Data type|Description|
+|:-------|:--------|:----------|      
+|connectionTimeout|int|連線至server的timeout時間，單位是秒。|
+|readTimeout|int|Http get 的 timeout時間，單位是秒。|
+|writeTimeout|int|Http post 的timeout時間，單位是秒。|
+|onTaskFailListener|OnTaskFailListener|Task 失敗時呼叫的Listener。|
+|formBody|RequestBody|Http post所使用。是[OkHttp][2]所定義的類別。|
+|objectType|Type|類別型態。配合[Gson][1]使用。|
 
 
 Sample Code
 ----
 #### Load JSONObject Object
-    new JsonCake.Builder()
-    	.setUrl("your_json_file_url")
-    	.setOnFinishListener(new OnFinishLoadJsonObjectListener(){
+```java
+new JsonCake.Builder()
+	.setUrl("your_json_file_url")
+    .setOnFinishListener(new OnFinishLoadJsonObjectListener(){
 
-			@Override
-			public void onFinish(JSONObject arg0) {
-				// TODO Auto-generated method stub
-				/* write your code here */
-			}
+		@Override
+		public void onFinish(JSONObject arg0) {
+			// TODO Auto-generated method stub
+			/* write your code here */
+		}
     		
-    	})
-    	.get();
+    })
+    .get();
+```
  
 #### Load JSONArray Object with Read Timeout
-    new JsonCake.Builder()
-    	.setUrl("your_json_file_url")
-    	.setReadTimeout(5)
-    	.setOnFinishListener(new OnFinishLoadJsonArrayListener(){
+```java
+new JsonCake.Builder()
+	.setUrl("your_json_file_url")
+    .setReadTimeout(5)
+    .setOnFinishListener(new OnFinishLoadJsonArrayListener(){
 
-			@Override
-			public void onFinish(JSONArray arg0) {
-				// TODO Auto-generated method stub
-				/* write your code here */
-			}
+		@Override
+		public void onFinish(JSONArray arg0) {
+			// TODO Auto-generated method stub
+			/* write your code here */
+		}
     		
-    	})
-    	.get();
+    })
+    .get();
+```
 
 #### Load String Object with OnTaskFailListener
-    new JsonCake.Builder()
-    	.setUrl("your_json_file_url")
-    	.setOnFinishListener(new OnFinishLoadStringListener(){
+```java
+new JsonCake.Builder()
+	.setUrl("your_json_file_url")
+    .setOnFinishListener(new OnFinishLoadStringListener(){
 
-			@Override
-			public void onFinish(String arg0) {
-				// TODO Auto-generated method stub
-				/* write your code here */
-			}
+		@Override
+		public void onFinish(String arg0) {
+			// TODO Auto-generated method stub
+			/* write your code here */
+		}
 
-    	})
-    	.setOnTaskFailListener(new OnTaskFailListener(){
+    })
+    .setOnTaskFailListener(new OnTaskFailListener(){
 
-			@Override
-			public void onFail(String errorMessage, Exception exception) {
-				// TODO Auto-generated method stub
-				/* write your code here */
-			}
+		@Override
+		public void onFail(String errorMessage, Exception exception) {
+			// TODO Auto-generated method stub
+			/* write your code here */
+		}
     		
-    	})
-    	.get();
-
+    })
+    .get();
+```
 
 ####Load Custom Object parsed by Gson
-    new JsonCake.Builder()
-    	.setUrl("your_json_file_url")
-    	.setObjectType(DataSet.class)
-    	.setOnFinishListener(new OnFinishLoadObjectListener(){
+```java
+new JsonCake.Builder()
+	.setUrl("your_json_file_url")
+    .setObjectType(DataSet.class)
+    .setOnFinishListener(new OnFinishLoadObjectListener(){
 
-			@Override
-			public void onFinish(Object object) {
-				// TODO Auto-generated method stub
-				DataSet dataSet = (DataSet)object;
-				/* write your code here */
-			}
+		@Override
+		public void onFinish(Object object) {
+			// TODO Auto-generated method stub
+			DataSet dataSet = (DataSet)object;
+			/* write your code here */
+		}
     		
-    	})
+    })
+    .get();
+```
 >**Note:**
 >DataSet是自己定義的class。Gson可以把下載的Json解析成DataSet Object。詳情請參考[官網](https://code.google.com/p/google-gson/)。
 
 
 ####Send Http Post and Get String Response
-	RequestBody formBody = new FormEncodingBuilder()
-	    .add("Name", "Tom") // key-value pair in POST
-        .add("Age", "25")
-        .build();
+```java
+RequestBody formBody = new FormEncodingBuilder()
+	.add("Name", "Tom") // key-value pair in POST
+    .add("Age", "25")
+    .build();
         
-    new JsonCake.Builder()
-	    .setUrl("your_url")
-        .setOnFinishListener(new OnFinishLoadStringListener(){
+new JsonCake.Builder()
+	.setUrl("your_url")
+    .setOnFinishListener(new OnFinishLoadStringListener(){
 
-			@Override
-			public void onFinish(String responseStr) {
-				// TODO Auto-generated method stub
-				/* write your code here */
-			}
+		@Override
+		public void onFinish(String responseStr) {
+			// TODO Auto-generated method stub
+			/* write your code here */
+		}
         		
-        })        	
-        .setFormBody(formBody)
-        .post();
-
+    })        	
+    .setFormBody(formBody)
+    .post();
+```
 >**Note:**
 >RequestBody 是 OkHttp所定義的Class，可以依序將Form的資料依序填入。詳情請參考[官網][2]。
 
