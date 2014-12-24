@@ -7,21 +7,21 @@ Welcome to JsonCake
 Variables
 ---
 **Required**
-|Name    |Data type|Description|
-	|:-------|:--------|:----------|      
-	|urlStr |String|json file 的網址。|
-	|onFinishListener|OnFinishListener|Task 結束時呼叫的Listener。|
+	Name    |Data type|Description
+	:-------|:--------|:----------      
+	urlStr |String|json file 的網址。
+	onFinishListener|OnFinishListener|Task 結束時呼叫的Listener。
 
 
 Optional
-	|Name    |Data type|Description|
-	|:-------|:--------|:----------|      
-	|connectionTimeout|int|連線至server的timeout時間，單位是秒。|
-	|readTimeout|int|Http get 的 timeout時間，單位是秒。|
-	|writeTimeout|int|Http post 的timeout時間，單位是秒。|
-	|onTaskFailListener|OnTaskFailListener|Task 失敗時呼叫的Listener。|
-	|formBody|RequestBody|Http post所使用。是OkHttp所定義的類別。|
-|objectType|Type|類別型態。配合Gson使用。|
+	Name    |Data type|Description
+	:-------|:--------|:----------      
+	connectionTimeout|int|連線至server的timeout時間，單位是秒。
+	readTimeout|int|Http get 的 timeout時間，單位是秒。
+	writeTimeout|int|Http post 的timeout時間，單位是秒。
+	onTaskFailListener|OnTaskFailListener|Task 失敗時呼叫的Listener。
+	formBody|RequestBody|Http post所使用。是OkHttp所定義的類別。
+	objectType|Type|類別型態。配合Gson使用。
 
 Sample Code
 ----
