@@ -7,6 +7,7 @@ Welcome to JsonCake
 Variables
 ---
 **Required**
+
 	Name            |Data type       |Description
 	----------------|:---------------|:----------      
 	urlStr          |String          |json file 的網址。
@@ -14,7 +15,8 @@ Variables
 
 
 Optional
-	Name    |Data type|Description
+	
+	Name                |Data type         |Description
 	--------------------|:-----------------|:----------      
 	connectionTimeout   |int               |連線至server的timeout時間，單位是秒。
 	readTimeout         |int               |Http get 的 timeout時間，單位是秒。
@@ -23,7 +25,7 @@ Optional
 	formBody            |RequestBody       |Http post所使用。是OkHttp所定義的類別。
 	objectType          |Type              |類別型態。配合Gson使用。
 
-	
+
      Mapping         | Generated HTML Element               | Database Column Type
      --------------- |:-------------------------------------|:--------------------
      `boolean`       | `input[type=checkbox]`               | `boolean`
