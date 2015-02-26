@@ -16,6 +16,7 @@ public class JsonCake {
 		private int connectionTimeout,readTimeout,writeTimeout;	
 		private OnFinishListener onFinishListener;
 		private OnTaskFailListener onTaskFailListener;
+		private OnWrapFormBody onWrapFormBody;
 		private RequestBody formBody;
 		private Type objectType;
 		
@@ -57,6 +58,10 @@ public class JsonCake {
 			this.objectType = objectType;
 			return this;
 		}
+		public Builder setOnWrapFormBody(OnWrapFormBody onWrapFormBody){
+			this.onWrapFormBody = onWrapFormBody;
+			return this;
+		}
 		public String getUrl() {
 			return url;
 		}
@@ -80,6 +85,9 @@ public class JsonCake {
 		}
 		public Type getObjectType(){
 			return objectType;
+		}
+		public OnWrapFormBody getOnWrapFormBody(){
+			return onWrapFormBody;
 		}
 		public void post(){
 			new JsonCake(this).post();
@@ -155,6 +163,10 @@ public class JsonCake {
 				client.setReadTimeout(readTimeout, TimeUnit.SECONDS);
 			if(writeTimeout > 0)
 				client.setWriteTimeout(writeTimeout, TimeUnit.SECONDS);
+			
+			if(onWrapFormBody != null){
+				formBody = onWrapFormBody.wrapForm();
+			}
 			
 			Request request = new Request.Builder()
 									        .url(url)

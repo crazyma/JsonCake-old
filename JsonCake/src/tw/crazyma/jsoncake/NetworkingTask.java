@@ -23,6 +23,7 @@ public abstract class NetworkingTask extends AsyncTask<Void, Void, Object> {
 	protected OnFinishListener onFinishListener;
 	protected OnTaskFailListener onTaskFailListener;
 	protected RequestBody formBody;
+	protected OnWrapFormBody onWrapFormBody;
 	protected String url;
 	protected Type objectType;
 	
@@ -35,6 +36,7 @@ public abstract class NetworkingTask extends AsyncTask<Void, Void, Object> {
 		onTaskFailListener = builder.getOnTaskFailListener();
 		formBody = builder.getFormBody();
 		objectType = builder.getObjectType();
+		onWrapFormBody = builder.getOnWrapFormBody();
 	}
 	
 	protected abstract String onNetworking() throws IOException;
